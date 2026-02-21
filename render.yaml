@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: matem-bot-24x7
+    runtime: python
+    plan: free
+    autoDeploy: true
+    buildCommand: ""
+    startCommand: python3 main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SENDER_BOT_TOKEN
+        sync: false
+      - key: RECEIVER_BOT_TOKEN
+        sync: false
+      - key: KEEPALIVE_INTERVAL_SECONDS
+        value: "480"
