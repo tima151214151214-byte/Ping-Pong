@@ -17,3 +17,37 @@ services:
         sync: false
       - key: KEEPALIVE_INTERVAL_SECONDS
         value: "480"
+
+  - type: worker
+    name: pravoslavie-prostym-yazykom
+    runtime: python
+    plan: free
+    autoDeploy: true
+    rootDir: "бот два нейросеть N-ый"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: LLM_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        value: openrouter/free
+      - key: AGENT_MODELS
+        value: openrouter/free,openrouter/free,openrouter/free,openrouter/free
+      - key: LLM_TIMEOUT_SECONDS
+        value: "90"
+      - key: WEB_RESULTS
+        value: "5"
+      - key: REQUEST_TEMPERATURE
+        value: "0.25"
+      - key: DAILY_API_LIMIT
+        value: "50"
+      - key: STORAGE_PATH
+        value: bot_data.sqlite3
+      - key: HISTORY_WINDOW
+        value: "4"
